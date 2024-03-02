@@ -3,6 +3,6 @@
 
 
 email: press@gaijinent.com
-password:ishak_project
+password: ishak_project
 
 Created by Grobovick and Manchesov
