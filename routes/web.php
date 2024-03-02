@@ -38,7 +38,10 @@ Route::middleware(['splade'])->group(function () {
 
     Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
         Route::view('/dashboard', 'dashboard')->name('dashboard');
-
+        // Ресурный роуты
+        Route::resource('categories',\App\Http\Controllers\Admin\CategoryController::class );
+        Route::resource('products',\App\Http\Controllers\Admin\ProductController::class );
+        Route::resource('reviews',\App\Http\Controllers\Admin\ReviewController::class );
     });
     Route::get('/', [\App\Http\Controllers\Client\IndexController::class, 'index'])->name('client.index');
 

@@ -18,6 +18,18 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Панель управления') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                            {{ __('Категории') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                            {{ __('Продукты') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('reviews.index')" :active="request()->routeIs('reviews.index')">
+                            {{ __('Отзывы') }}
+                        </x-nav-link>
+{{--                        <x-nav-link :href="route('settings')" :active="request()->routeIs('settings')">--}}
+{{--                            {{ __('Настройки') }}--}}
+{{--                        </x-nav-link>--}}
                     </div>
                 </div>
 

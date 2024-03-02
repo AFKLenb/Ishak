@@ -11,7 +11,7 @@ class TeamPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can views any models.
      */
     public function viewAny(User $user): bool
     {
@@ -19,7 +19,7 @@ class TeamPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can views the model.
      */
     public function view(User $user, Team $team): bool
     {
