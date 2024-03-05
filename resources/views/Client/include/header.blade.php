@@ -1,12 +1,12 @@
 @php
-//    $setting = App\Models\Setting::find(1);
+    $setting = App\Models\Setting::find(1);
 @endphp
 <header class="application__header header" id="header-top">
     <div class="header__container container">
         <div class="header__inner">
             <div class="header__logo">
                 <a href="#" class="header__logo-link">
-                    <img src="{{asset('/assets/img/79ecf04b67f1c2c76d60.svg')}}" alt="" class="header__logo-img">
+                    <img src="{{Storage::url($setting->logo)}}" alt="" class="header__logo-img">
                 </a>
             </div>
             <nav class="header__navbar navbar">

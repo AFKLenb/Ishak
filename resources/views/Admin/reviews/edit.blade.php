@@ -12,6 +12,7 @@
         <div class="my-4 p-4 rounded-md max-w-3xl mx-auto bg-white">
             <x-splade-form method="PUT" action="{{route('reviews.update', $review->id)}}" :default="$review">
                 <x-splade-input name="name" label="{{__('ФИО клиента')}}" placeholder="{{__('ФИО клиента')}}"/>
+                <x-splade-input name="patch" label="{{__('patch клиента')}}" placeholder="{{__('ФИО клиента')}}"/>
                 <x-splade-textarea class="mt-5" name="text" label="{{__('Описание отзыва')}}" placeholder="{{__('текст отзыва')}}"/>
                 <x-splade-file name="image" :show-filename="false" preview label="{{__('Изображение отзыва')}}"/>
                 <img class="max-w-[150px] rounded-md max-h-[150px] mt-[15px] mb-[15px]" src="{{Storage::url($review->image)}}" alt="">

@@ -42,7 +42,12 @@ Route::middleware(['splade'])->group(function () {
         Route::resource('categories',\App\Http\Controllers\Admin\CategoryController::class );
         Route::resource('products',\App\Http\Controllers\Admin\ProductController::class );
         Route::resource('reviews',\App\Http\Controllers\Admin\ReviewController::class );
+        Route::resource('heroes',\App\Http\Controllers\Admin\HeroController::class );
+        Route::resource('socials', \App\Http\Controllers\Admin\SocialController::class );
+        Route::resource('subscriptions', \App\Http\Controllers\Admin\SubscriptionController::class );
+        Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class );
     });
     Route::get('/', [\App\Http\Controllers\Client\IndexController::class, 'index'])->name('client.index');
+    Route::post('FitbackStore', [\App\Http\Controllers\Client\FitbackController::class, 'store'])->name('client.FitbackStore');
 
 });

@@ -27,9 +27,18 @@
                         <x-nav-link :href="route('reviews.index')" :active="request()->routeIs('reviews.index')">
                             {{ __('Отзывы') }}
                         </x-nav-link>
-{{--                        <x-nav-link :href="route('settings')" :active="request()->routeIs('settings')">--}}
-{{--                            {{ __('Настройки') }}--}}
-{{--                        </x-nav-link>--}}
+                        <x-nav-link :href="route('heroes.index')" :active="request()->routeIs('heroes.index')">
+                            {{ __('Главная') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('socials.index')" :active="request()->routeIs('socials.index')">
+                            {{ __('Соц-сети') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('subscriptions.index')" :active="request()->routeIs('subscriptions.index')">
+                            {{ __('Подписки') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('settings.index')" :active="request()->routeIs('settings.index')">
+                            {{ __('Настройки') }}
+                        </x-nav-link>
                     </div>
                 </div>
 

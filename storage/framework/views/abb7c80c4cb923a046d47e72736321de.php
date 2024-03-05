@@ -1,32 +1,28 @@
 <?php
-//    $setting = App\Models\Setting::find(1);
-//    $socials =  App\Models\Social::where('isActive', 1)->get();
+    $setting = App\Models\Setting::find(1);
+    $socials =  App\Models\Social::where('isActive', 1)->get();
 ?>
 <footer class="application__footer footer" id="footer-top">
     <div class="footer__container container">
         <div class="footer__inner">
             <div class="footer__logo">
                 <a href="#" class="footer__logo-link">
-                    <img src="<?php echo e(asset('/assets/img/79ecf04b67f1c2c76d60.svg')); ?>" alt="Логотип" class="footer__logo-img">
+                    <img src="<?php echo e(Storage::url($setting->logo)); ?>" alt="Логотип" class="footer__logo-img">
                 </a>
             </div>
             <nav class="footer__navbar">
                 <ul class="footer__list">
-                    <li class="footer__item">
-                        <a href="https://www.youtube.com/@Noname-gk1ii/featured" class="footer__link"><i class="bx bxl-youtube"></i></a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="https://vk.com/m_grob_m" class="footer__link"><i class="bx bxl-vk"></i></a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="https://web.telegram.org/k/#1023504873" class="footer__link"><i class="bx bxl-telegram"></i></a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="https://web.whatsapp.com" class="footer__link"><i class="bx bxl-whatsapp"></i></a>
-                    </li>
+                    <?php $__empty_1 = true; $__currentLoopData = $socials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $social): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <li class="footer__item">
+                            <a href="<?php echo e($social->link); ?>" class="footer__link"><img src="<?php echo e(Storage::url($social->image)); ?>" class=" w-full h-[auto] " alt=""></a>
+                        </li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <?php echo e(__ ('Данные не найдены')); ?>
+
+                    <?php endif; ?>
                 </ul>
                 <div class="footer__email">
-                    <a href="mailto:dr.grobovick@yandex.ru" class="footer__description">dr.grobovick@yandex.ru</a>
+                    <a href="mailto:dr.grobovick@yandex.ru" class="footer__description"><?php echo e($setting->email); ?></a>
                 </div>
             </nav>
         </div>

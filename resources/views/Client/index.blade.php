@@ -1,24 +1,33 @@
+@seoTitle(__('Golden rus'))
 @php
     $product1 =  App\Models\Product::where('isActive', 1)->get();
+    $setting = App\Models\Setting::find(1);
 @endphp
 @extends('client.layout.layout')
 {{-- Заголовок для страницы --}}
 @section('title') {{ __('Главная страница') }} @endsection
 {{-- Контент для страницы --}}
 @section('content')
-
         <main class="application__main main-page" id="main-page">
             <div class="main-page__btn-up btn-up__hide"></div>
             <div class="main-page__container container">
                 <div class="main-page__wrapper">
                     <section id="about" class="main-page__section about-section">
-                        <div class="about-section__content">
-                            <img src="{{asset('assets/img/33767c99a6d790299fc3.webp')}}" alt="Мастер" class="about-section__content-image">
-                            <div class="about-section__content-text">
-                                <h2 class="about-section__content-title">Наша мастерская самая лучшая по городу Курску.</h2>
-                                <p class="about-section__content-description"><br> Мы изготавливаем ювелирные изделия на протяжении 10 лет. Наши профессиональные дизайнеры подберут украшение каджому. <br><br> Наши плюсы: <br><br> <span>1.</span> качество проверенное временем <br><br> <span>2.</span> наличие бюджетных вариантов <br><br> <span>3.</span> быстрое выполнение работы </p>
+                        @forelse($heroes as $hero)
+                            <div class="about-section__content">
+                                <img src="{{Storage::url($hero->image)}}" alt="Мастер" class="about-section__content-image">
+                                <div class="about-section__content-text">
+                                    <h2 class="about-section__content-title">{{$hero->title}}</h2>
+                                    <p class="about-section__content-description"><br>{{$hero->description}}</p>
+                                    <p class="about-section__content-description"><br>{{$hero->plus}}</p>
+                                    <p class="about-section__content-description"><br>{{$hero->plusOne}}</p>
+                                    <p class="about-section__content-description"><br>{{$hero->plusTwo}}</p>
+                                    <p class="about-section__content-description"><br>{{$hero->plusTree}}</p>
+                                </div>
                             </div>
-                        </div>
+                        @empty
+                            {{__ ('Данные не найдены')}}
+                        @endforelse
                     </section>
                     <section id="filter" class="main-page__section filter-section">
                         <div class="filter-section__content">
@@ -42,7 +51,7 @@
                                 <ul class="filter-section__list">
                                     @forelse($products as $product)
                                         <li data-path="{{$product->patch}}" data-target="{{$product->target}}" class="filter-section__card">
-                                            <img src="{{Storage::url($product->image)}}" alt="Подвеска Premium" class="filter-section__card-img">
+                                            <img src="{{Storage::url($product->image)}}" alt="изображение товара" class="filter-section__card-img">
                                             <h2 class="filter-section__card-name">{{$product->title}}</h2>
                                         </li>
                                     @empty
@@ -174,10 +183,9 @@
                         </div> -->
                     </section>
                     <section id="reviews" class="main-page__section reviews-section">
-                        @forelse($products as $product)
-                            <div data-path="{{$product->target}}" class="reviews-section__content">
+                        @forelse($reviews as $review)
+                            <div data-path="{{$review->patch}}" class="reviews-section__content">
                                 <ul class="reviews-section__list">
-                                    @forelse($reviews as $review)
                                         <li class="reviews-section__review review">
                                             <div class="review__name">
                                                 <img src="{{Storage::url($review->image)}}" alt="Аватар пользователя" class="review__avatar">
@@ -187,9 +195,6 @@
                                                 <p class="review__description">{{$review->text}}</p>
                                             </div>
                                         </li>
-                                    @empty
-                                        {{__ ('Данные не найдены')}}
-                                    @endforelse
                                 </ul>
                             </div>
                         @empty
@@ -202,19 +207,20 @@
                             <div class="contacts-section__top">
                                 <div class="contacts-section__logo">
                                     <a href="#" class="contacts-section__logo-link">
-                                        <img src="{{asset('/assets/img/79ecf04b67f1c2c76d60.svg')}}" alt="Логотип" class="contacts-section__logo-img">
+                                        <img src="{{Storage::url($setting->logo)}}" alt="Логотип" class="contacts-section__logo-img">
                                     </a>
                                 </div>
                                 <div class="contacts-section__number">
-                                    <a href="tel:+79413758131" class="contacts-section__description"> Контактный телефон: <span>+79413758131</span></a>
+                                    <a href="tel:+79413758131" class="contacts-section__description"> Контактный телефон: <span>{{$setting->phone_number}}</span></a>
                                 </div>
                             </div>
-                            <div class="contacts-section__mailing-list">
-                                <p class="contacts-section__email">Введите email: <input type="email" class="contacts-section__email-field" title="Введите email" name="email"></p>
-                                <button class="contacts-section__button">
-                                    <p class="contacts-section__link">Подписаться</p>
-                                </button>
-                            </div>
+                                <form action="{{route('client.FitbackStore')}}" method="post" class="contacts-section__mailing-list">
+                                    @csrf
+                                    <p class="contacts-section__email">Введите email: <input name="email" required type="email" class="contacts-section__email-field" title="Введите email" name="email"></p>
+                                    <button type="submit" class="contacts-section__button">
+                                        <p class="contacts-section__link">Подписаться</p>
+                                    </button>
+                                </form>
                         </div>
                     </section>
                 </div>
